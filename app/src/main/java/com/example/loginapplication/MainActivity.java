@@ -88,8 +88,11 @@ public class MainActivity extends AppCompatActivity {
                 if (validateInputFields()) {
                   /*  Intent intent2 = new Intent(this, LoginActivity.class);
                     startActivity(intent2);*/
-                    CustomDialog customDialog = new CustomDialog(this);
-                    customDialog.show();
+                   /* CustomDialog customDialog = new CustomDialog(this);
+                    customDialog.show();*/
+
+                    CustomDialogRecyclerView customDialogRecyclerView = new CustomDialogRecyclerView(this);
+                    customDialogRecyclerView.show();
                 }
                 break;
 
