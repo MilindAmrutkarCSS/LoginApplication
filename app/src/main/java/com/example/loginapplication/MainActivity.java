@@ -1,5 +1,6 @@
 package com.example.loginapplication;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
@@ -8,13 +9,13 @@ import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.google.android.material.textfield.TextInputLayout;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -85,8 +86,10 @@ public class MainActivity extends AppCompatActivity {
 
             case R.id.btnLogin:
                 if (validateInputFields()) {
-                    Intent intent2 = new Intent(this, LoginActivity.class);
-                    startActivity(intent2);
+                  /*  Intent intent2 = new Intent(this, LoginActivity.class);
+                    startActivity(intent2);*/
+                    CustomDialog customDialog = new CustomDialog(this);
+                    customDialog.show();
                 }
                 break;
 
@@ -96,5 +99,27 @@ public class MainActivity extends AppCompatActivity {
             case R.id.tlUserPassword:
                 break;
         }
+    }
+
+    @Override
+    public void onBackPressed() {
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setMessage("Are you sure you want to exit?")
+                .setCancelable(false)
+                .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        MainActivity.this.finish();
+                    }
+                })
+                .setNegativeButton("No", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.cancel();
+                    }
+                });
+        AlertDialog alertDialog = builder.create();
+        alertDialog.show();
+
     }
 }
