@@ -84,12 +84,9 @@ public class MainActivity extends AppCompatActivity {
                 break;
 
             case R.id.btnLogin:
-                if(validateInputFields()) {
+                if (validateInputFields()) {
                     Intent intent2 = new Intent(this, LoginActivity.class);
                     startActivity(intent2);
-
-                } else {
-
                 }
                 break;
 
